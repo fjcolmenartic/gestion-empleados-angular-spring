@@ -1,0 +1,77 @@
+<div class="col-md-6 offset-md-3">
+    <h3 class="text-center t-bold">Registro de empleado</h3>
+    <form (ngSubmit)="onSubmit()" #empleadoForm="ngForm">
+        <div class="form-group">
+            <label>Nombre: </label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="nombre" 
+                [(ngModel)]="empleado.nombre" 
+                name="nombre" 
+                required 
+                placeholder="Escriba su nombre" 
+                minlength="4" 
+                maxlength="10" 
+                #nombre="ngModel" />
+                <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                    <div class="alert alert-danger mt-2" *ngIf="nombre.errors?.['required']">
+                        Escriba su nombre es obligatorio.
+                    </div>
+                    <div class="alert alert-danger mt-2" *ngIf="nombre.errors?.['minlength']">
+                        El nombre debe tener como mínimo 4 carácteres.
+                    </div>
+                    <div class="alert alert-danger mt-2" *ngIf="nombre.errors?.['maxlength']">
+                        El nombre debe tener como máximo 10 carácteres.
+                    </div>
+                </div>
+        </div>
+        <div class="form-group">
+            <label>Apellido: </label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="apellido" 
+                [(ngModel)]="empleado.apellido" 
+                name="apellido"
+                required
+                placeholder="Escriba su apellido"
+                minlength="4" 
+                maxlength="10" 
+                #apellido="ngModel" />
+                <div *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)">
+                    <div class="alert alert-danger mt-2" *ngIf="apellido.errors?.['required']">
+                        Escriba su apellido es obligatorio.
+                    </div>
+                    <div class="alert alert-danger mt-2" *ngIf="apellido.errors?.['minlength']">
+                        El apellido debe tener como mínimo 4 carácteres.
+                    </div>
+                    <div class="alert alert-danger mt-2" *ngIf="apellido.errors?.['maxlength']">
+                        El apellido debe tener como máximo 10 carácteres.
+                    </div>
+                </div>
+        </div>
+        <div class="form-group">
+            <label>Email: </label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="email" 
+                [(ngModel)]="empleado.email" 
+                name="email"
+                required
+                pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"
+                placeholder="Escriba su email"
+                #email="ngModel" />
+                <div *ngIf="email.invalid && (email.dirty || email.touched)">
+                    <div class="alert alert-danger mt-2" *ngIf="email.errors?.['required']">
+                        Escriba su email es obligatorio
+                    </div>
+                    <div class="alert alert-danger mt-2" *ngIf="email.errors?.['pattern']">
+                        Escriba el email en formato correcto: nombre@domino.com
+                    </div>
+                </div>
+        </div>
+        <button class="btn btn-success" [disabled]="empleadoForm.form.invalid">Guardar</button>
+    </form>
+</div>
